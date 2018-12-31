@@ -1,8 +1,14 @@
+require('dotenv').config();
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts');
-
+const mongoose = require('mongoose');
 const app = express();
 
+//Mongo config
+const db = process.env.MONGO_URI;
+mongoose.connect(db, {useNewUrlParser:true} )
+  .then(()=>console.log("mongo connected"))
+  .catch(err=> console.log(err))
 //EJS setup
 app.use(expressLayouts);
 app.set("view engine", 'ejs');
