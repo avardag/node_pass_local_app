@@ -88,4 +88,12 @@ router.post("/login", (req, res, next)=>{
   })(req, res, next)
 })
 
+//LogOut handle
+router.get("/logout", (req, res)=>{
+  //req.logout from passport lib
+  req.logOut();
+  req.flash("success_msg", "You are logged out")
+  res.redirect("/users/login")
+})
+
 module.exports =router;
